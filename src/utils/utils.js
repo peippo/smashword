@@ -6,3 +6,6 @@ export const chars = {
 };
 
 export const allCharTypes = Object.keys(chars);
+
+export const pickRandomChar = (characters) =>
+	characters.charAt(Math.floor(Math.random() * characters.length));
