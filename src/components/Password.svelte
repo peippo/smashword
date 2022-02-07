@@ -28,8 +28,16 @@
 
 <svelte:window on:keydown={handleKeydown} />
 
+<div>
 	{#each Array($maxLength) as character, index}
 		<svelte:component
 			this={index < $characters ? Character : CharacterPlaceholder}
 		/>
 	{/each}
+</div>
+
+<style>
+	div {
+		display: flex;
+	}
+</style>
