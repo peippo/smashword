@@ -1,13 +1,12 @@
 <script type="ts">
 	import Character from "./Character.svelte";
 	import CharacterPlaceholder from "./CharacterPlaceholder.svelte";
-	import { maxLength } from "../store";
+	import { characters, maxLength } from "../store";
 
-	let characters: number = 0;
 	let key: string;
 
-	$: if (characters > $maxLength) {
-		characters = $maxLength;
+	$: if ($characters > $maxLength) {
+		$characters = $maxLength;
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
@@ -15,22 +14,22 @@
 		const isEscape = key === "Escape";
 		const isBackspace = key === "Backspace";
 
-		if (characters >= $maxLength && !isEscape && !isBackspace) return;
+		if ($characters >= $maxLength && !isEscape && !isBackspace) return;
 
 		if (isEscape) {
-			characters = 0;
+			$characters = 0;
 		} else if (isBackspace) {
-			characters = Math.max(0, characters - 1);
+			$characters = Math.max(0, $characters - 1);
 		} else {
-			characters += 1;
+			$characters += 1;
 		}
 	}
 </script>
 
 <svelte:window on:keydown={handleKeydown} />
 
-{#each Array($maxLength) as character, index}
-	<svelte:component
-		this={index < characters ? Character : CharacterPlaceholder}
-	/>
-{/each}
+	{#each Array($maxLength) as character, index}
+		<svelte:component
+			this={index < $characters ? Character : CharacterPlaceholder}
+		/>
+	{/each}

@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 import { allCharTypes } from "./utils/utils";
 
-export const maxLength = writable(8);
+export const characters = writable(10);
+export const maxLength = writable(16);
 export const selectedTypes = writable([...allCharTypes]);
