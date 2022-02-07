@@ -1,5 +1,9 @@
 :root {
 	--font-family: "JetBrains Mono", monospace;
+	--color-cyan: #0ea5ad;
+	--color-blue: #00003e;
+	--color-purple: #6154a0;
+	--color-yellow: #f5d547;
 }
 	position: relative;
 	width: 100%;
