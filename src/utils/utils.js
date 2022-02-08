@@ -9,3 +9,8 @@ export const allCharTypes = Object.keys(chars);
 
 export const pickRandomChar = (characters) =>
 	characters.charAt(Math.floor(Math.random() * characters.length));
+
+export const PASSWORD_LIMITS = {
+	MIN: 8,
+	MAX: 32,
+};
