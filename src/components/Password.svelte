@@ -1,10 +1,10 @@
 <script type="ts">
 	import Character from "./Character.svelte";
 	import CharacterPlaceholder from "./CharacterPlaceholder.svelte";
-	import { characters, maxLength } from "../store";
+	import { characterCount, maxLength } from "../store";
 
-	$: if ($characters > $maxLength) {
-		$characters = $maxLength;
+	$: if ($characterCount > $maxLength) {
+		$characterCount = $maxLength;
 	}
 </script>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { characters, maxLength } from "./store";
+	import { characterCount, maxLength } from "./store";
 	import { PASSWORD_LIMITS } from "./utils/utils";
 
 	import Logo from "./components/Logo.svelte";
@@ -18,7 +18,7 @@
 	}
 
 	function clear() {
-		$characters = 0;
+		$characterCount = 0;
 	}
 
 	function handleKeydown(event: KeyboardEvent) {
@@ -32,14 +32,14 @@
 		const isSpecialKey =
 			isEscape || isBackspace || isArrowLeft || isArrowRight || isTab;
 
-		if ($characters >= $maxLength && !isSpecialKey) return;
+		if ($characterCount >= $maxLength && !isSpecialKey) return;
 
 		if (isEscape) {
 			clear();
 		}
 
 		if (isBackspace) {
-			$characters = Math.max(0, $characters - 1);
+			$characterCount = Math.max(0, $characterCount - 1);
 		}
 
 		if (isArrowLeft) {
@@ -51,7 +51,7 @@
 		}
 
 		if (!isSpecialKey) {
-			$characters += 1;
+			$characterCount += 1;
 		}
 	}
 </script>
