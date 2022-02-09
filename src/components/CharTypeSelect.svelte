@@ -83,7 +83,7 @@
 	}
 
 	input:disabled + label::after {
-		background-color: #6e7070;
+		background-color: var(--color-gray);
 	}
 
 	input:disabled + label {
