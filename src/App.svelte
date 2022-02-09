@@ -6,6 +6,7 @@
 	import Instructions from "./components/Instructions.svelte";
 	import CharTypeSelect from "./components/CharTypeSelect.svelte";
 	import Password from "./components/Password.svelte";
+	import CopyPassword from "./components/CopyPassword.svelte";
 
 	let key: string;
 
@@ -67,4 +68,5 @@
 	/>
 	<CharTypeSelect />
 	<Password />
+	<CopyPassword />
 </main>

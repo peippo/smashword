@@ -8,7 +8,7 @@
 	}
 </script>
 
-<div class="password">
+<div class="password" id="password">
 	{#each Array($maxLength) as character, index}
 		<svelte:component
 			this={index < $characterCount ? Character : CharacterPlaceholder}
@@ -21,7 +21,6 @@
 		--cell-size: 2rem;
 		display: grid;
 		grid-template-columns: repeat(8, 1fr);
-		grid-template-rows: 1fr 1fr;
 		gap: 2px;
 	}
 
