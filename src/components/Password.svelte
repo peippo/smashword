@@ -18,16 +18,35 @@
 
 <style>
 	.password {
+		--cell-size: 2rem;
 		display: grid;
 		grid-template-columns: repeat(8, 1fr);
 		grid-template-rows: 1fr 1fr;
 		gap: 2px;
 	}
 
+	@media (min-width: 500px) {
+		.password {
+			--cell-size: 3rem;
+		}
+	}
+
+	@media (min-width: 750px) {
+		.password {
+			--cell-size: 4.5rem;
+		}
+	}
+
 	@media (min-width: 1024px) {
 		.password {
+			--cell-size: 3rem;
 			grid-template-columns: repeat(16, 1fr);
 		}
 	}
+
+	@media (min-width: 1200px) {
+		.password {
+			--cell-size: 4rem;
+		}
 	}
 </style>
