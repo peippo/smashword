@@ -52,6 +52,7 @@
 <style>
 	svg {
 		max-width: 800px;
+		margin-bottom: 0.5rem;
 	}
 
 	.lock-color {

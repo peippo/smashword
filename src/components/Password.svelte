@@ -8,16 +8,26 @@
 	}
 </script>
 
-<div>
+<div class="password">
 	{#each Array($maxLength) as character, index}
 		<svelte:component
-			this={index < $characters ? Character : CharacterPlaceholder}
+			this={index < $characterCount ? Character : CharacterPlaceholder}
 		/>
 	{/each}
 </div>
 
 <style>
-	div {
-		display: flex;
+	.password {
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+		grid-template-rows: 1fr 1fr;
+		gap: 2px;
+	}
+
+	@media (min-width: 1024px) {
+		.password {
+			grid-template-columns: repeat(16, 1fr);
+		}
+	}
 	}
 </style>

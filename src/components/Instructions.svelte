@@ -17,20 +17,53 @@
 </script>
 
 <div class="container">
-	<p>
+	<p class="text">
 		<span class="highlight"><strong>Smash keys</strong></span> to generate a password
 	</p>
-	<p>
-		<button on:click={handleLeft} class="key">&larr;</button>
-		<button on:click={handleRight} class="key">&rarr;</button> adjust length
-	</p>
-	<p><button on:click={handleClear} class="key">Esc</button> clear</p>
+	<div class="controls">
+		<p>
+			<button on:click={handleLeft} class="key">&larr;</button>
+			<button on:click={handleRight} class="key">&rarr;</button>
+			<span class="d-none">adjust </span>length
+		</p>
+		<p><button on:click={handleClear} class="key">Esc</button> clear</p>
+	</div>
 </div>
 
 <style>
 	.container {
 		display: flex;
-		gap: 2rem;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 0.5rem;
+	}
+
+	@media (min-width: 750px) {
+		.container {
+			flex-direction: row;
+			gap: 2rem;
+		}
+	}
+
+	.text {
+		margin-bottom: 0.5rem;
+		font-size: 16px;
+	}
+
+	.controls {
+		display: flex;
+		gap: 1rem;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	@media (max-width: 600px) {
+		.d-none {
+			display: none;
+		}
 	}
 
 	.highlight {

@@ -4,8 +4,8 @@
 	let types = [...allCharTypes];
 </script>
 
-<section>
-	<h2 class="screen-reader-text">Toggle character types</h2>
+<fieldset>
+	<legend>Select character types</legend>
 	<form>
 		{#each types as type}
 			<div class="wrapper">
@@ -24,11 +24,20 @@
 			</div>
 		{/each}
 	</form>
-</section>
+</fieldset>
 
 <style>
-	section {
-		margin: 2rem 0 3rem;
+	fieldset {
+		margin: 2rem 0 1rem;
+		padding: 1rem 2rem;
+		border-top: 1px solid var(--color-blue);
+		border-right: 1px solid var(--color-blue);
+		border-left: 1px solid var(--color-blue);
+		border-bottom: 0;
+	}
+
+	legend {
+		color: var(--color-blue);
 	}
 
 	form {
@@ -38,7 +47,7 @@
 		gap: 1rem;
 	}
 
-	@media (min-width: 600px) {
+	@media (min-width: 750px) {
 		form {
 			display: flex;
 			flex-direction: column;
@@ -64,12 +73,6 @@
 		opacity: 1;
 	}
 
-	input:hover + label::after,
-	label:hover::after {
-		opacity: 1;
-		background-color: var(--color-yellow);
-	}
-
 	input:focus + label::before {
 		outline: 2px dotted var(--color-blue);
 		outline-offset: 2px;
@@ -77,6 +80,19 @@
 
 	input:focus:not(:focus-visible) + label::before {
 		outline: none;
+	}
+
+	input:disabled + label::after {
+		background-color: #6e7070;
+	}
+
+	input:disabled + label {
+		color: #136064;
+	}
+
+	input:disabled:hover,
+	input:disabled + label:hover {
+		cursor: not-allowed;
 	}
 
 	label {
