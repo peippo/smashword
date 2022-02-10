@@ -57,13 +57,15 @@
 <svelte:window on:keydown={handleKeydown} />
 
 <main>
-	<Logo />
-	<Instructions
-		on:clear={clear}
-		on:decrease-length={decreaseLength}
-		on:increase-length={increaseLength}
-	/>
-	<CharTypeSelect />
+	<header>
+		<Logo />
+		<Instructions
+			on:clear={clear}
+			on:decrease-length={decreaseLength}
+			on:increase-length={increaseLength}
+		/>
+		<CharTypeSelect />
+	</header>
 	<Password />
 	<CopyPassword />
 </main>

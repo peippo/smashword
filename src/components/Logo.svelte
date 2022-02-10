@@ -16,6 +16,7 @@
 	}
 </script>
 
+<h1 class="screen-reader-text">Smashword</h1>
 <svg
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 1025.4 125"

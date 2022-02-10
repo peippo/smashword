@@ -11,7 +11,8 @@
 		justify-content: center;
 		width: var(--cell-size);
 		height: var(--cell-size);
-		border: 1px solid var(--color-blue);
+		border: 2px solid var(--color-blue);
+		opacity: 0.33;
 		border-radius: 3px;
 	}
 </style>

@@ -49,6 +49,7 @@
 	.text {
 		margin-bottom: 0.5rem;
 		font-size: 16px;
+		text-align: center;
 	}
 
 	.controls {

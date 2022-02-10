@@ -30,7 +30,7 @@
 	fieldset {
 		margin: 2rem 0 1rem;
 		padding: 1rem 2rem;
-		border-top: 1px solid var(--color-blue);
+		border-top: 6px solid var(--color-blue);
 		border-right: 1px solid var(--color-blue);
 		border-left: 1px solid var(--color-blue);
 		border-bottom: 0;
@@ -38,6 +38,7 @@
 
 	legend {
 		color: var(--color-blue);
+		padding: 0 0.75rem;
 	}
 
 	form {

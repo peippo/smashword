@@ -24,4 +24,28 @@
 		border: 1px solid var(--color-blue);
 		border-radius: 3px;
 	}
+
+	@media (min-width: 500px) {
+		span {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (min-width: 750px) {
+		span {
+			font-size: 2.5rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		span {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (min-width: 1200px) {
+		span {
+			font-size: 2rem;
+		}
+	}
 </style>
