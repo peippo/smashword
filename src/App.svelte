@@ -28,12 +28,9 @@
 		const isBackspace = key === "Backspace";
 		const isArrowLeft = key === "ArrowLeft";
 		const isArrowRight = key === "ArrowRight";
-		const isTab = key === "Tab";
+		const isBasicKey = /^[a-z0-9]$/i.test(key);
 
-		const isSpecialKey =
-			isEscape || isBackspace || isArrowLeft || isArrowRight || isTab;
-
-		if ($characterCount >= $maxLength && !isSpecialKey) return;
+		if ($characterCount >= $maxLength && isBasicKey) return;
 
 		if (isEscape) {
 			clear();
@@ -51,7 +48,7 @@
 			increaseLength();
 		}
 
-		if (!isSpecialKey) {
+		if (isBasicKey) {
 			$characterCount += 1;
 		}
 	}
