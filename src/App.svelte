@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { characterCount, maxLength } from "./store";
+	import { tick } from "svelte";
+	import { characterCount, maxLength, currentPassword } from "./store";
 	import { PASSWORD_LIMITS } from "./utils/utils";
 
 	import Logo from "./components/Logo.svelte";
@@ -22,7 +23,7 @@
 		$characterCount = 0;
 	}
 
-	function handleKeydown(event: KeyboardEvent) {
+	async function handleKeydown(event: KeyboardEvent) {
 		key = event.key;
 		const isEscape = key === "Escape";
 		const isBackspace = key === "Backspace";
@@ -51,6 +52,10 @@
 		if (isBasicKey) {
 			$characterCount += 1;
 		}
+
+		await tick();
+		const passwordElement = document.getElementById("password");
+		$currentPassword = passwordElement.innerText.replace(/\s/g, "");
 	}
 </script>
 
@@ -69,3 +74,12 @@
 	<Password />
 	<CopyPassword />
 </main>
+
+<style>
+	header {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+</style>

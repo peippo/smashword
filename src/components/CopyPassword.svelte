@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { fade, fly } from "svelte/transition";
+	import { currentPassword } from "../store";
 
 	let isSuccess = false;
 	let isError = false;
 
 	function copyText() {
-		const passwordElement = document.getElementById("password");
-		const text = passwordElement.innerText.replace(/\s/g, "");
-
-		navigator.clipboard.writeText(text).then(
+		navigator.clipboard.writeText($currentPassword).then(
 			function () {
 				isSuccess = true;
 
@@ -27,7 +25,7 @@
 <div class="container">
 	{#if isSuccess}
 		<div
-			in:fly={{ duration: 200, y: 5 }}
+			in:fly={{ duration: 200, y: 10 }}
 			out:fade={{ duration: 200 }}
 			class="popup"
 		>
@@ -35,9 +33,16 @@
 		</div>
 	{/if}
 
-	<button disabled={isError} on:click={copyText}>
-		{isError ? "Sorry, unable to copy :(" : "Copy password"}
-	</button>
+	{#if $currentPassword.length !== 0}
+		<button
+			disabled={isError}
+			on:click={copyText}
+			in:fly={{ duration: 400, y: -10 }}
+			out:fly={{ duration: 400, y: 10 }}
+		>
+			{isError ? "Sorry, unable to copy :(" : "Copy password"}
+		</button>
+	{/if}
 </div>
 
 <style>
