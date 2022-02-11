@@ -13,12 +13,16 @@
 	let key: string;
 	let screenWidth: number;
 
+	$: $isNarrowScreen = screenWidth < 600
+
 	function addCharacter() {
 		$characterCount += 1;
+		updatePassword();
 	}
 
 	function decreaseLength() {
 		$maxLength = Math.max(PASSWORD_LIMITS.MIN, $maxLength - 1);
+		updatePassword();
 	}
 
 	function increaseLength() {
@@ -27,6 +31,7 @@
 
 	function clear() {
 		$characterCount = 0;
+		updatePassword();
 	}
 
 	async function handleKeydown(event: KeyboardEvent) {
@@ -59,17 +64,14 @@
 			addCharacter();
 		}
 
+		updatePassword();
+	}
+
+	async function updatePassword() {
 		await tick();
 		const passwordElement = document.getElementById("password");
 		$currentPassword = passwordElement.innerText.replace(/\s/g, "");
-	}
-
-	$: if (screenWidth < 600) {
-		$isNarrowScreen = true;
-	} else {
-		$isNarrowScreen = false;
-	}
-	
+	}	
 </script>
 
 <svelte:window on:keydown={handleKeydown} bind:innerWidth={screenWidth} />
