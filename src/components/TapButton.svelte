@@ -1,14 +1,18 @@
 <script lang="ts">
+	import { characterCount, maxLength } from "../store";
     import { createEventDispatcher } from "svelte";
 
 	const dispatch = createEventDispatcher();
+    
+    let isDisabled = false;
+    $: isDisabled = $characterCount === $maxLength
 
     function handleClick() {
 		dispatch("add");
 	}
 </script>
 
-<button on:click={handleClick}>
+<button disabled={isDisabled} on:click={handleClick}>
     <span class="screen-reader-text">Generate a character</span>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
         <!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -25,6 +29,23 @@
         right: 20px;
         border-radius: 1000px;
         background-color: var(--color-yellow);
+    }
+
+    button:not(:disabled):active {
+        background-color: var(--color-yellow);
+    }
+
+    button:not(:disabled):active svg {
+        fill: var(--color-purple);
+    }
+
+    button:disabled {
+        background-color: var(--color-gray);
+    }
+
+    button:disabled svg {
+        fill: #fff;
+        opacity: 0.25;
     }
 
     svg {
