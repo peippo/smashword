@@ -5,3 +5,4 @@ export const characterCount = writable(0);
 export const maxLength = writable(16);
 export const currentPassword = writable("");
 export const selectedTypes = writable([...allCharTypes]);
+export const isNarrowScreen = writable(false);

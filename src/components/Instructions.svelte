@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { isNarrowScreen } from "../store";
 	import { createEventDispatcher } from "svelte";
 
 	const dispatch = createEventDispatcher();
@@ -18,7 +19,7 @@
 
 <div class="container">
 	<p class="text">
-		<span class="highlight"><strong>Smash keys</strong></span> to generate a password
+		<span class="highlight"><strong>{$isNarrowScreen ? "Tap" : "Smash keys"}</strong></span> to generate a password
 	</p>
 	<div class="controls">
 		<p>
