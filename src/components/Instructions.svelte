@@ -118,26 +118,4 @@
 		fill: var(--color-yellow);
 		transition: fill 0.2s ease-in-out;
 	}
-
-	.length-wrapper {
-		position: relative;
-		margin-right: 3.5rem;
-	}
-
-	.length {
-		position: absolute;
-		top: 50%;
-		right: -2.5rem;
-		transform: translateY(-50%);
-		/* background-color: var(--color-blue);
-		color: var(--color-yellow); */
-		border-radius: 1000px;
-		padding: 0.25rem;
-		width: 1.75rem;
-		height: 1.75rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		/* font-size: 12px; */
-	}
 </style>
