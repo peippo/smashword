@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { isNarrowScreen } from "../store";
 	import { createEventDispatcher } from "svelte";
+	import { characterCount, maxLength, isNarrowScreen } from "../store";
+	import { PASSWORD_LIMITS } from "../utils/utils";
 
 	const dispatch = createEventDispatcher();
 
@@ -19,22 +20,42 @@
 
 <div class="container">
 	<p class="text">
-		<span class="highlight"><strong>{$isNarrowScreen ? "Tap" : "Smash keys"}</strong></span> to generate a password
+		<span class="highlight"
+			><strong>{$isNarrowScreen ? "Tap" : "Smash keys"}</strong></span
+		> to generate a password
 	</p>
 	<div class="controls">
-		<p>
-			<button on:click={handleLeft}>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"/></svg>
+		<div>
+			<button
+				disabled={$maxLength === PASSWORD_LIMITS.MIN}
+				on:click={handleLeft}
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+					><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path
+						d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"
+					/></svg
+				>
 			</button>
-			<button on:click={handleRight}>
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"/></svg>
+			<button
+				disabled={$maxLength === PASSWORD_LIMITS.MAX}
+				on:click={handleRight}
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+					><!--! Font Awesome Pro 6.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path
+						d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z"
+					/></svg
+				>
 			</button>
-			<span class="d-none">adjust </span>length
-		</p>
+			Max length ({$maxLength})
+		</div>
 		{#if $isNarrowScreen}
-			<button on:click={handleClear}>Clear</button>
+			<button disabled={$characterCount === 0} on:click={handleClear}
+				>Clear</button
+			>
 		{:else}
-			<p><button on:click={handleClear}>Esc</button> clear</p>
+			<button disabled={$characterCount === 0} on:click={handleClear}
+				>Esc</button
+			> Clear
 		{/if}
 	</div>
 </div>
@@ -44,11 +65,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 1rem;
 		margin-top: 0.5rem;
 	}
 
-	@media (min-width: 750px) {
+	@media (min-width: 850px) {
 		.container {
 			flex-direction: row;
 			gap: 2rem;
@@ -56,24 +77,34 @@
 	}
 
 	.text {
-		margin-bottom: 0.5rem;
 		font-size: 16px;
 		text-align: center;
+		margin: 0;
 	}
 
 	.controls {
 		display: flex;
+		align-items: center;
 		gap: 1rem;
 	}
 
-	p {
-		margin: 0;
+	button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 2.5rem;
+		min-height: 2.5rem;
 	}
 
 	@media (max-width: 600px) {
-		.d-none {
-			display: none;
+		button {
+			min-width: 2rem;
+			min-height: 2rem;
 		}
+	}
+
+	button:disabled svg {
+		fill: var(--color-cyan);
 	}
 
 	.highlight {
@@ -85,5 +116,28 @@
 		width: 18px;
 		height: 16px;
 		fill: var(--color-yellow);
+		transition: fill 0.2s ease-in-out;
+	}
+
+	.length-wrapper {
+		position: relative;
+		margin-right: 3.5rem;
+	}
+
+	.length {
+		position: absolute;
+		top: 50%;
+		right: -2.5rem;
+		transform: translateY(-50%);
+		/* background-color: var(--color-blue);
+		color: var(--color-yellow); */
+		border-radius: 1000px;
+		padding: 0.25rem;
+		width: 1.75rem;
+		height: 1.75rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/* font-size: 12px; */
 	}
 </style>

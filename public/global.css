@@ -1,8 +1,10 @@
 :root {
 	--font-family: "JetBrains Mono", monospace;
 	--color-cyan: #0ea5ad;
+	--color-dark-cyan: #097e85;
 	--color-blue: #00003e;
 	--color-purple: #6154a0;
+	--color-dark-purple: #52458f;
 	--color-yellow: #f5d547;
 	--color-green: #078907;
 	--color-gray: #6e7070;
@@ -79,12 +81,14 @@ textarea {
 
 button {
 	border: 0;
+	margin: 0;
 	color: var(--color-yellow);
 	background-color: var(--color-purple);
 	padding: 0.25rem 0.5rem;
 	border-radius: 3px;
 	border-bottom: 2px solid var(--color-blue);
-	transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out, border 0.2s ease-in-out,
+		color 0.2s ease-in-out;
 }
 
 button:not(:disabled):hover {
@@ -93,7 +97,7 @@ button:not(:disabled):hover {
 }
 
 button:not(:disabled):active {
-	background-color: var(--color-blue);
+	background-color: var(--color-dark-purple);
 }
 
 button:focus {
@@ -106,9 +110,10 @@ button:focus:not(:focus-visible) {
 }
 
 button:disabled {
-	color: #999;
-	background-color: var(--color-gray);
+	color: var(--color-cyan);
+	background-color: var(--color-dark-cyan);
 	border: 0;
+	border-bottom: 2px solid var(--color-cyan);
 }
 
 button:disabled:hover {
