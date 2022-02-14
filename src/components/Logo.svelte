@@ -1,18 +1,21 @@
 <script lang="ts">
 	import { characterCount } from "../store";
 
-	// TODO: Use password strength instead of length
-
 	let lockClass: string;
 
-	$: if ($characterCount > 16) {
-		lockClass = "lock-color--green";
-	} else if ($characterCount > 8) {
-		lockClass = "lock-color--yellow";
-	} else if ($characterCount > 0) {
-		lockClass = "lock-color--red";
-	} else {
-		lockClass = null;
+	$: switch (true) {
+		case $characterCount > 12:
+			lockClass = "lock-color--green";
+			break;
+		case $characterCount > 8:
+			lockClass = "lock-color--yellow";
+			break;
+		case $characterCount > 4:
+			lockClass = "lock-color--red";
+			break;
+		default:
+			lockClass = null;
+			break;
 	}
 </script>
 
