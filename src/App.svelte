@@ -84,7 +84,7 @@
 			on:decrease-length={decreaseLength}
 			on:increase-length={increaseLength}
 		/>
-		<CharTypeSelect />
+		<CharTypeSelect updatePassword={updatePassword} />
 	</header>
 	<Password />
 	<CopyPassword />

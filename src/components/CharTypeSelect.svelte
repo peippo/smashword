@@ -1,6 +1,9 @@
 <script type="ts">
 	import { allCharTypes } from "../utils/utils";
 	import { selectedTypes } from "../store";
+	
+	export let updatePassword;
+
 	let types = [...allCharTypes];
 </script>
 
@@ -17,6 +20,7 @@
 						$selectedTypes.includes(type)}
 					name="char-types"
 					value={type}
+					on:change={updatePassword}
 				/>
 				<label for={`input-${type}`}>
 					{type}
@@ -68,6 +72,10 @@
 		top: 0;
 		left: 0;
 		opacity: 0;
+	}
+
+	input:not(:checked) + label {
+		text-decoration: line-through;
 	}
 
 	input:checked + label::after {
