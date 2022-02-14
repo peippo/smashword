@@ -1,8 +1,8 @@
-import { writable } from "svelte/store";
+import { writable, Writable } from "svelte/store";
 import { allCharTypes } from "./utils/utils";
 
-export const characterCount = writable(0);
-export const maxLength = writable(16);
-export const currentPassword = writable("");
-export const selectedTypes = writable([...allCharTypes]);
-export const isNarrowScreen = writable(false);
+export const characterCount: Writable<number> = writable(0);
+export const maxLength: Writable<number> = writable(16);
+export const currentPassword: Writable<string> = writable("");
+export const selectedTypes: Writable<string[]> = writable([...allCharTypes]);
+export const isNarrowScreen: Writable<boolean> = writable(false);
