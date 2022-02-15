@@ -22,18 +22,18 @@
 	}
 </script>
 
-<div class="container">
-	{#if isSuccess}
-		<div
-			in:fly={{ duration: 200, y: 10 }}
-			out:fade={{ duration: 200 }}
-			class="popup"
-		>
-			Copied!
-		</div>
-	{/if}
+{#if $currentPassword.length !== 0}
+	<div class="container">
+		{#if isSuccess}
+			<div
+				in:fly={{ duration: 200, y: 10 }}
+				out:fade={{ duration: 200 }}
+				class="popup"
+			>
+				Copied!
+			</div>
+		{/if}
 
-	{#if $currentPassword.length !== 0}
 		<button
 			disabled={isError}
 			on:click={copyText}
@@ -42,8 +42,8 @@
 		>
 			{isError ? "Sorry, unable to copy :(" : "Copy password"}
 		</button>
-	{/if}
-</div>
+	</div>
+{/if}
 
 <style>
 	.container {

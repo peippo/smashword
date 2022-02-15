@@ -8,13 +8,16 @@
 	}
 </script>
 
-<div class="password" id="password">
-	{#each Array($maxLength) as character, index}
-		<svelte:component
-			this={index < $characterCount ? Character : CharacterPlaceholder}
-		/>
-	{/each}
-</div>
+<section>
+	<h2 class="screen-reader-text">Generated password</h2>
+	<div class="password" id="password">
+		{#each Array($maxLength) as character, index}
+			<svelte:component
+				this={index < $characterCount ? Character : CharacterPlaceholder}
+			/>
+		{/each}
+	</div>
+</section>
 
 <style>
 	.password {
