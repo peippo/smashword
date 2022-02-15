@@ -1,9 +1,9 @@
 <script type="ts">
 	import { fly } from "svelte/transition";
-
 	import { chars, pickRandomChar } from "../utils/utils";
 	import { selectedTypes } from "../store";
 
+	let availableChars: string;
 	let randomChar: string;
 
 	$: availableChars = $selectedTypes.map((type) => chars[type]).join("");

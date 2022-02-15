@@ -2,8 +2,8 @@
 	import { fade, fly } from "svelte/transition";
 	import { currentPassword } from "../store";
 
-	let isSuccess = false;
-	let isError = false;
+	let isSuccess: boolean = false;
+	let isError: boolean = false;
 
 	function copyText() {
 		navigator.clipboard.writeText($currentPassword).then(

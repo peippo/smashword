@@ -1,7 +1,7 @@
 <script type="ts">
 	import { allCharTypes } from "../utils/utils";
 	import { selectedTypes } from "../store";
-	
+
 	export let updatePassword;
 
 	let types = [...allCharTypes];

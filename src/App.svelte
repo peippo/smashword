@@ -1,6 +1,11 @@
 <script lang="ts">
 	import { tick } from "svelte";
-	import { characterCount, maxLength, currentPassword, isNarrowScreen } from "./store";
+	import {
+		characterCount,
+		maxLength,
+		currentPassword,
+		isNarrowScreen,
+	} from "./store";
 	import { PASSWORD_LIMITS } from "./utils/utils";
 
 	import Logo from "./components/Logo.svelte";
@@ -13,7 +18,7 @@
 	let key: string;
 	let screenWidth: number;
 
-	$: $isNarrowScreen = screenWidth < 600
+	$: $isNarrowScreen = screenWidth < 600;
 
 	function addCharacter() {
 		$characterCount += 1;
@@ -71,7 +76,7 @@
 		await tick();
 		const passwordElement = document.getElementById("password");
 		$currentPassword = passwordElement.innerText.replace(/\s/g, "");
-	}	
+	}
 </script>
 
 <svelte:window on:keydown={handleKeydown} bind:innerWidth={screenWidth} />
@@ -84,17 +89,23 @@
 			on:decrease-length={decreaseLength}
 			on:increase-length={increaseLength}
 		/>
-		<CharTypeSelect updatePassword={updatePassword} />
+		<CharTypeSelect {updatePassword} />
 	</header>
 	<Password />
 	<CopyPassword />
 
 	{#if $isNarrowScreen}
-		<TapButton on:add={addCharacter}/>
+		<TapButton on:add={addCharacter} />
 	{/if}
 </main>
 
 <style>
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	header {
 		width: 100%;
 		display: flex;
